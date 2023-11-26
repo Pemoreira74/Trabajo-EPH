@@ -1,0 +1,141 @@
+SELECT
+	"ANO4",
+	"TRIMESTRE",
+CASE
+		"REGION" 
+		WHEN 1 THEN
+		'Gran Buenos Aires' 
+		WHEN 40 THEN
+		'NOA' 
+		WHEN 41 THEN
+		'NEA' 
+		WHEN 42 THEN
+		'Cuyo' 
+		WHEN 43 THEN
+		'Pampeana' 
+		WHEN 44 THEN
+		'Patagónica' 
+	END AS REGION,
+CASE
+		"AGLOMERADO" 
+		WHEN 2 THEN
+		'Gran La Plata' 
+		WHEN 3 THEN
+		'Bahía Blanca' 
+		WHEN 4 THEN
+		'Gran Rosario' 
+		WHEN 5 THEN
+		'Gran Santa Fé' 
+		WHEN 6 THEN
+		'Gran Paraná' 
+		WHEN 7 THEN
+		'Posadas' 
+		WHEN 8 THEN
+		'Gran Resistencia' 
+		WHEN 9 THEN
+		'Cdro. Rivadavia – Rada Tilly' 
+		WHEN 10 THEN
+		'Gran Mendoza' 
+		WHEN 12 THEN
+		'Corrientes' 
+		WHEN 13 THEN
+		'Gran Córdoba' 
+		WHEN 14 THEN
+		'Concordia' 
+		WHEN 15 THEN
+		'Formosa' 
+		WHEN 17 THEN
+		'Neuquén – Plottier' 
+		WHEN 18 THEN
+		'S.del Estero ‐ La Banda' 
+		WHEN 19 THEN
+		'Jujuy ‐ Palpalá' 
+		WHEN 20 THEN
+		'Río Gallegos' 
+		WHEN 22 THEN
+		'Gran Catamarca' 
+		WHEN 23 THEN
+		'Salta' 
+		WHEN 25 THEN
+		'La Rioja' 
+		WHEN 26 THEN
+		'San Luis ‐ El Chorrillo' 
+		WHEN 27 THEN
+		'Gran San Juan' 
+		WHEN 29 THEN
+		'Gran Tucumán ‐ T. Viejo' 
+		WHEN 30 THEN
+		'Santa Rosa ‐ Toay' 
+		WHEN 31 THEN
+		'Ushuaia ‐ Río Grande' 
+		WHEN 32 THEN
+		'Ciudad de Buenos Aires' 
+		WHEN 33 THEN
+		'Partidos del GBA' 
+		WHEN 34 THEN
+		'Mar del Plata ‐ Batán' 
+		WHEN 36 THEN
+		'Río Cuarto' 
+		WHEN 38 THEN
+		'San Nicolás – Villa Constitución' 
+		WHEN 91 THEN
+		'Rawson – Trelew' 
+		WHEN 93 THEN
+		'Viedma – Carmen de Patagones' 
+	END AS "AGLOMERADO",
+CASE
+		
+		WHEN "CH04" = 1 THEN
+		'Varón' 
+		WHEN "CH04" = 2 THEN
+		'Mujer' 
+	END AS "CH04",
+	"CH06" AS Edad,
+CASE
+		
+		WHEN "CH09" = 1 THEN
+		'No' 
+		WHEN "CH09" = 2 THEN
+		'Si' 
+		WHEN "CH09" = 3 THEN
+		'Menor de 2 años' 
+	END AS "CH09",
+CASE
+		
+		WHEN "NIVEL_ED" = 1 THEN
+		'Primaria Incompleta (incluye educación especial)' 
+		WHEN "NIVEL_ED" = 2 THEN
+		'Primaria Completa' 
+		WHEN "NIVEL_ED" = 3 THEN
+		'Secundaria Incompleta' 
+		WHEN "NIVEL_ED" = 4 THEN
+		'Secundaria Completa' 
+		WHEN "NIVEL_ED" = 5 THEN
+		'Superior Universitaria Incompleta' 
+		WHEN "NIVEL_ED" = 6 THEN
+		'Superior Universitaria Completa' 
+		WHEN "NIVEL_ED" = 7 THEN
+		'Sin instrucción' 
+		WHEN "NIVEL_ED" = 8 THEN
+		'Ns/Nr' 
+	END AS "NIVEL_ED",
+	"ESTADO" 
+FROM
+	usu_completo 
+WHERE
+	"IPCF" > 0 
+	AND "ESTADO" IN ( 1, 2 ) 
+GROUP BY
+	"ANO4",
+	"TRIMESTRE",
+	"REGION",
+	"AGLOMERADO",
+	"CH04",
+	"CH06",
+	"CH09",
+	"NIVEL_ED",
+	"ESTADO",
+	"IX_TOT" 
+ORDER BY
+	"ANO4",
+	"TRIMESTRE";
